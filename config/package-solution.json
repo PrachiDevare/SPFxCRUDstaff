@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-fx-cru-dstaff-client-side-solution",
+    "id": "501eea2e-67e9-4466-abf2-2e0aed89468c",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.17.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "sp-fx-cru-dstaff description"
+      },
+      "longDescription": {
+        "default": "sp-fx-cru-dstaff description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "sp-fx-cru-dstaff Feature",
+        "description": "The feature that activates elements of the sp-fx-cru-dstaff solution.",
+        "id": "1edc0bf9-cdab-4ab5-b2ef-b9a60eba03c1",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-fx-cru-dstaff.sppkg"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.16.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.9.1"
+    },
+    "version": "1.17.1",
+    "libraryName": "sp-fx-cru-dstaff",
+    "libraryId": "501eea2e-67e9-4466-abf2-2e0aed89468c",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "sp-fx-cru-dstaff",
+    "solutionShortDescription": "sp-fx-cru-dstaff description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
