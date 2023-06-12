@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IStaffCrudProps } from './IStaffCrudProps';
 import { SPHttpClient, SPHttpClientResponse } from "@microsoft/sp-http";
 import styles from './StaffCrud.module.scss';
+import * as moment from "moment";
 
 interface IListItem {
   ID: number;
@@ -10,7 +11,7 @@ interface IListItem {
   Address:String;
   Department:any;
   ContactNo:number;
-  IsMarried:boolean;
+  MaritalStatus:any;
   Salary:number;
   Manager:{
     Title: string;
@@ -29,7 +30,8 @@ interface IListItems {
   listSelectedID: number;
   listContactNo:any;
   listSalary:any;
-  listIsMarried:any;
+  listMaritalStatus:any;
+  // listManager:any;
 }
 
 export default class StaffCrud extends React.Component<IStaffCrudProps, IListItems> {
@@ -46,7 +48,11 @@ export default class StaffCrud extends React.Component<IStaffCrudProps, IListIte
         listDepartment:undefined,
         listContactNo:"",
         listSalary:"",
-        listIsMarried:undefined,
+        listMaritalStatus:undefined,
+        // listManager:{
+        //   Title:undefined,
+        //   Email:undefined
+        // }
       };
     }
     componentDidMount() {
@@ -54,8 +60,8 @@ export default class StaffCrud extends React.Component<IStaffCrudProps, IListIte
     }
      // Get items
   public getListItems = () => {
-    // let selectColumns =  `Manager/Title`;
-    // let expandColumns =  `Manager`;$expand=${expandColumns}
+    // let selectColumns =  `Manager/Title`;&$select=${selectColumns}
+    // let expandColumns =  `Manager`;&$expand=${expandColumns}
 
     let requestURL = `${this.props.context.pageContext.web.absoluteUrl}/_api/web/lists/getbytitle('${this.props.listName}')/items`;
     this.props.context.spHttpClient
@@ -119,7 +125,8 @@ public addItemInList = () => {
     Department:this.state.listDepartment,
     ContactNo:this.state.listContactNo,
     Salary:this.state.listSalary,
-    IsMarried:this.state.listIsMarried,
+    MaritalStatus:this.state.listMaritalStatus,
+    // Manager:this.state.listManager.Title,
   });
 
   this.props.context.spHttpClient
@@ -157,7 +164,8 @@ public updateItemInList = (itemID: number) => {
     Department:this.state.listDepartment,
     ContactNo:this.state.listContactNo,
     Salary:this.state.listSalary,
-    IsMarried:this.state.listIsMarried,
+    MaritalStatus:this.state.listMaritalStatus,
+    // Manager:this.state.listManager.Title,
   });
 
   this.props.context.spHttpClient
@@ -186,20 +194,27 @@ public updateItemInList = (itemID: number) => {
     
 
     return (
+    
+      
       <div className={styles["spfx-crud"]}>
+      <div><h3 className ={styles.heading}> {this.props.listName}</h3></div>
+       
+    
+         <label htmlFor="Employee Name">Employee Name:</label><br></br>
         <input 
           value={this.state.listTitle}
           type="text"
           name=""
           id="lsTitle"
-          placeholder="Title"
+          placeholder="Employee Name"
           onChange={(e) => {
             this.setState({
               listTitle: e.currentTarget.value,
             });
             // console.log(this.state.listTitle);
           }}
-        />
+        /><br></br><br></br>
+         <label htmlFor="Address">Address:</label><br></br>
         <input 
           value={this.state.listAddress}
           type="text"
@@ -212,20 +227,23 @@ public updateItemInList = (itemID: number) => {
             });
             
           }}
-        />
-
-         <input 
-          value={this.state.listDOB}
-          type="date"
+        /><br></br><br></br>
+         {/* <label htmlFor="Manager">Manager:</label><br></br>
+        <input 
+          value={this.state.listManager}
+          type="text"
           name=""
-          id="lsDOB"
-          placeholder="DOB"
+          id="lsManager"
+          placeholder="Manager"
           onChange={(e) => {
             this.setState({
-              listDOB: e.currentTarget.value as any,
+              listManager: e.currentTarget.value as any,
             });
+            
           }}
-        />
+        /><br></br><br></br> */}
+          
+      <label htmlFor="Department">Department:</label><br></br>
        <select 
           value={this.state.listDepartment}
           placeholder='Department'
@@ -240,7 +258,8 @@ public updateItemInList = (itemID: number) => {
           <option value="Sales">Sales</option>
           <option value="Marketing">Marketing</option>
           <option value="IT">IT</option>
-        </select>
+        </select><br></br><br></br>
+        <label htmlFor="Contact No">Contact No:</label><br></br>
         <input 
           value={this.state.listContactNo}
           type="text"
@@ -252,24 +271,11 @@ public updateItemInList = (itemID: number) => {
               listContactNo: e.currentTarget.value as any,
             });
           }}
-        />
-        < input
-          value={this.state.listIsMarried}
-          type="checkbox"
-          name=""
-          id="lsMarried"
-          placeholder="checkbox"
-          onChange={(e) => {
-            this.setState({
-              listIsMarried: e.currentTarget.value as any,
-            });
-            
-          }}
-          // < label for="Is Married"> Yes</label>
-          // <label for="Is Married"> No</label>
-          />
+        /><br></br><br></br>
+         
+          
         
-
+          <label htmlFor="Salary">Salary:</label><br></br>
         <input 
           value={this.state.listSalary}
           type="text"
@@ -281,16 +287,50 @@ public updateItemInList = (itemID: number) => {
               listSalary: e.currentTarget.value as any,
             });
           }}
-        />
+        /><br></br><br></br>
+        <label htmlFor="Marital Status">Marital Status:</label><br></br>
+       <select 
+          value={this.state.listMaritalStatus}
+          placeholder='Married/Unmarried'
+          id="IsMaritalStatus" name="MaritalStatus"
+             onChange={(e) => {
+            this.setState({
+              listMaritalStatus: e.currentTarget.value as any,
+            });
+            
+          }}>
+
+          <option value="Married">Married</option>
+          <option value="Unmarried">Unmarried</option>
+          <option value="Widow">Widow</option>
+        </select>
+        <br></br><br></br>
+           
         
-        <button
+        <label htmlFor="DOB">DOB:</label><br></br>
+         <input 
+          value={this.state.listDOB}
+          type="date"
+          name=""
+          id="lsDOB"
+          placeholder="DOB"
+          onChange={(e) => {
+            this.setState({
+              listDOB: e.currentTarget.value as any,
+            });
+          }}
+        /><br></br><br></br>
+       
+        
+        <button 
           onClick={() => {
             this.addItemInList();
           }}
         >
           Submit
         </button>
-        <button
+       
+        <button 
           onClick={() => {
             this.updateItemInList(this.state.listSelectedID);
           }}
@@ -299,7 +339,7 @@ public updateItemInList = (itemID: number) => {
         </button>
         <hr />
         <hr />
-
+        <div className={styles.box}>
       <table>
       <th>Title</th>
       <th>DOB</th>
@@ -307,17 +347,21 @@ public updateItemInList = (itemID: number) => {
       <th>Department</th>
       <th>Contact No</th>
       <th>Salary</th>
-      <th>Is Married</th>
+      <th>Marital Status</th> 
+      <th></th>
+      <th></th>
+       {/* <th>Manager</th> */}
       {this.state.AllItems.map((emp) => {
         return (
           <tr>
             <td>{emp.Title}</td>
-            <td>{emp.DOB}</td>
+            <td>{moment(emp.DOB).format("LL")}</td>
             <td>{emp.Address}</td>
             <td>{emp.Department}</td>
             <td>{emp.ContactNo}</td>
             <td>{emp.Salary}</td>
-            <td><td>{" "}{emp.IsMarried?"Yes":"No"}</td></td>
+            <td>{emp.MaritalStatus}</td>
+            {/* <td>{emp.Manager==undefined?"":emp.Manager.Title}</td> */}
             <td>
               <button
                 onClick={() => {
@@ -329,7 +373,8 @@ public updateItemInList = (itemID: number) => {
                     listDepartment:emp.Department,
                     listContactNo:emp.ContactNo,
                     listSalary:emp.Salary,
-                    listIsMarried:emp.IsMarried,
+                    listMaritalStatus:emp.MaritalStatus,
+                    // listManager:emp.Manager.Title,
                   });
                 }}
               >
@@ -349,7 +394,8 @@ public updateItemInList = (itemID: number) => {
         );
       })}
     </table>
-  </div>
+  </div></div>
+
     );
   }
 }
