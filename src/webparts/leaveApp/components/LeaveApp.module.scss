@@ -1,0 +1,87 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.leave-crud {
+  background-color: white;
+  width: 100%;
+}
+.heading{
+  margin: 0;
+  text-align: left;
+  padding-bottom:20px ;
+  padding-left: 10px;
+  padding-top: 10px;
+  background-color: #6a8137;
+  color: white;
+}
+.leave-crud{
+  Button{
+   
+  color: white;
+  font-size: medium;
+  font-weight: bold;
+  width: 90px;
+  background-color: #6a8137;
+  padding: 14px 20px;
+  margin: 15px ;
+  border: none;
+  border-radius: 4px;
+cursor: pointer;
+&:hover{
+  background-color:  #1d2905;;
+}
+  } 
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+label{
+  font-weight: bold;
+}
+
+.container{
+  table,
+  td,
+  th {
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table { 
+    border-collapse: collapse;
+    width: 100%;
+    
+  }
+  th{background-color: #6a8137;;
+    color: white;
+  }
+  th,
+  td {
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+   
+  }}
+  td button{
+  color: white;
+  font-size: medium;
+  font-weight: bold;
+  width: 90px;
+  background-color: #6a8137;
+  padding: 14px 20px;
+  margin: 15px ;
+  border: none;
+  border-radius: 4px;
+cursor: pointer;
+  
+    &:hover{
+      background-color:  #283805;;
+    }
+    
+  }
+  
